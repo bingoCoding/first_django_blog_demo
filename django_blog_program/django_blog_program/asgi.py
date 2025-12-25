@@ -11,7 +11,7 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-profile = os.environ.get('DJANGO_PROFILE', 'setting-dev')
+profile = os.environ.get('DJANGO_PROFILE', 'dev')
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_blog_program.settings.%s' % profile)
 
 application = get_asgi_application()
