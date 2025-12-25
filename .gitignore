@@ -1,0 +1,7 @@
+# Virtual environment
+.venv/
+
+# Python compiled files
+*.pyc
+*.swp
+*.sqlite3
