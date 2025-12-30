@@ -15,8 +15,34 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.contrib.sitemaps import views as sitemap_views
+from django.urls import path, re_path
+
+from blog.rss import LatestPostFeed
+from blog.sitemap import PostSiteMap
+from blog.views import post_list, post_detail, PostDetailView, IndexView, CategoryView, TagView, SearchView
+from comment.views import CommentView
+from config.views import LinkListView
+from django_blog_program.custom_site import custom_site
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', custom_site.urls),
+    path('super-admin/', admin.site.urls),
+
+    #path("", post_list, name="post_list"),
+    #re_path('category/(?P<category_id>\d+)/$', post_list, name="post_list"),
+    #re_path('tag/(?P<tag_id>\d+)/$', post_list, name="post_list"),
+    # re_path('post/(?P<post_id>\d+)/$', post_detail, name="post_detail"),
+    # re_path('links/$', links, name="post_detail"),
+
+
+    path("", IndexView.as_view(), name="post_list"),
+    re_path('category/(?P<category_id>\d+)/$', CategoryView.as_view(), name="post_list"),
+    re_path('tag/(?P<tag_id>\d+)/$', TagView.as_view(), name="post_list"),
+    re_path('post/(?P<post_id>\d+)/', PostDetailView.as_view(), name="post_detail"),
+    re_path('search/', SearchView.as_view(), name="post_list"),
+    re_path('links/', LinkListView.as_view(), name="links"),
+    re_path('comment/', CommentView.as_view(), name="comments"),
+    re_path('^rss|feed/', LatestPostFeed(), name="rss"),
+    re_path('^sitemap\.xml/$', sitemap_views.sitemap, {'sitemaps': {'posts': PostSiteMap}}, name="comments"),
 ]

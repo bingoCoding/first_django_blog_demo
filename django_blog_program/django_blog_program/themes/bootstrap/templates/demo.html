@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>django blog bootstrap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"></link>
+    <style>
+        .post {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container head">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Django Blog Bootstrap</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">Django Blog Bootstrap</h1>
+        <p class="lead">Django Blog Bootstrap is a blog system based on Django and Bootstrap.</p>
+    </div>
+</div>
+
+<div class="container main">
+    <div class="row">
+        <div class="col-9 post-list">
+            <div class="card post">
+                <div class="card-body">
+                    <h5 class="card-title">Django Blog Bootstrap</h5>
+                    <span class="card-link">作者: <a href="#">yangyangwithgnu</a></span>
+                    <span class="card-link">分类: <a href="#">Django</a></span>
+                    <span class="card-link">标签:
+                        <a href="#">Django</a>
+                        <a href="#">Django</a>
+                        <a href="#">Django</a>
+                    </span>
+                    <p class="card-text">
+                        Django Blog Bootstrap is a blog system based on Django and Bootstrap.
+                        <a href="#">Read More</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card post">
+                <div class="card-body">
+                    <h5 class="card-title">Django Blog Bootstrap</h5>
+                    <span class="card-link">作者: <a href="#">yangyangwithgnu</a></span>
+                    <span class="card-link">分类: <a href="#">Django</a></span>
+                    <span class="card-link">标签:
+                        <a href="#">Django</a>
+                        <a href="#">Django</a>
+                        <a href="#">Django</a>
+                    </span>
+                    <p class="card-text">
+                        Django Blog Bootstrap is a blog system based on Django and Bootstrap.
+                        <a href="#">Read More</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card post">
+                <div class="card-body">
+                    <h5 class="card-title">Django Blog Bootstrap</h5>
+                    <span class="card-link">作者: <a href="#">yangyangwithgnu</a></span>
+                    <span class="card-link">分类: <a href="#">Django</a></span>
+                    <span class="card-link">标签:
+                        <a href="#">Django</a>
+                        <a href="#">Django</a>
+                        <a href="#">Django</a>
+                    </span>
+                    <p class="card-text">
+                        Django Blog Bootstrap is a blog system based on Django and Bootstrap.
+                        <a href="#">Read More</a>
+                    </p>
+                </div>
+            </div>
+            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">上一页</a>
+            Page 1 of 1
+            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">下一页</a>
+        </div>
+        <div class="col-3">
+            <div class="card sidebar">
+                <div class="card-body">
+                    <h5 class="card-title">Django Blog Bootstrap</h5>
+                    <p class="card-text">
+                        Django Blog Bootstrap is a blog system based on Django and Bootstrap.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <hr>
+        <nav class="nav category">
+            <a class="nav-link" href="#">Django</a>
+            <a class="nav-link" href="#">Django</a>
+            <a class="nav-link" href="#">Django</a>
+        </nav>
+    </div>
+    <div class="container power">
+        <p class="text-muted">Copyright © 2020 Django Blog Bootstrap</p>
+    </div>
+</footer>
+
+</body>
+</html>

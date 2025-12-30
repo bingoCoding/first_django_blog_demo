@@ -1,3 +1,4 @@
 -i https://pypi.tuna.tsinghua.edu.cn/simple
 Django==4.2.27
+mistune==3.2.0
 -e .

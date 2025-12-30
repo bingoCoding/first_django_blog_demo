@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}首页{% endblock %}- django blog bootstrap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"></link>-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" crossorigin="anonymous"></link>
+    <style>
+        .post {
+            margin-bottom: 5px;
+        }
+    </style>
+     {% block extra_head %}{% endblock %}
+</head>
+<body>
+<div class="container head">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Django Blog Bootstrap</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% for nav in navs %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'post_list' nav.id %}">{{nav.name}} <span class="sr-only">(current)</span></a>
+                </li>
+                {% endfor %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/search/"  method="get">
+                <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search" value="{{ keyword }}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="jumbotron">
+        <h1 class="display-4">Django Blog Bootstrap</h1>
+        <p class="lead">Django Blog Bootstrap is a blog system based on Django and Bootstrap.</p>
+    </div>
+</div>
+
+<div class="container main">
+    <div class="row">
+        <div class="col-9 post-list">
+            {% block main %}
+            {% endblock %}
+
+        </div>
+        <div class="col-3">
+            {% block  sidebar %}
+                {% for sidebar in sidebars %}
+                 <div class="card sidebar">
+                    <div class="card-body">
+                        <h5 class="card-title">{{sidebar.title}}</h5>
+                        <p class="card-text">
+                            {{sidebar.content_html}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<footer>
+    {% block footer %}
+    <div class="container">
+        <hr>
+        <nav class="nav category">
+            {% for category  in categories %}
+            <a class="nav-link" href="{% url 'post_list' category.id %}">{{category.name}}</a>
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="container power">
+        <p class="text-muted">Copyright © 2020 Django Blog Bootstrap</p>
+    </div>
+    {% endblock %}
+</footer>
+
+</body>
+</html>

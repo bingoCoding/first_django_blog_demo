@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} 首页 {% endblock %} - django系统</title>
+</head>
+<body>
+<div>
+    头部部分：
+    {% for nav in navs %}
+        <a href="/category/{{ nav.id }}/">{{ nav.name }}</a>
+    {% endfor %}
+</div>
+<hr />
+
+{% block main %}
+{% endblock %}
+
+<hr />
+<div>
+    底部部分：
+    {% for nav in non_navs %}
+        <a href="{% url 'post_list' nav.id %}">{{ nav.name }}</a>
+    {% endfor %}
+</div>
+
+<hr />
+<div>
+    侧边栏展示：
+    {% for sidebar in sidebars %}
+        <h4>{{ sidebar.title }}</h4>
+        {{ sidebar.content_html }}
+    {% endfor %}
+</div>
+</body>
+</html>
