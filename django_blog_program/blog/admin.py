@@ -47,7 +47,7 @@ class PostAdmin(BaseOwnerAdmin):
         ),
         (
             '内容', {
-                'fields': ('desc', 'content'),
+                'fields': ('desc', 'is_md', 'content_md', 'content_ck', 'content'),
             }
         ),
         (

@@ -19,13 +19,13 @@
 {% if post %}
 <h1> {{ post.title }} </h1>
 <div>
-    <span>作者：{{ post.owner.username }}</span>
+    <span>作者1：{{ post.owner.username }}</span>
     <span>分类：{{ post.category.name }}</span>
 </div>
 <hr/>
 <p>
     {% autoescape off %}
-    {{ post.content_html }}
+    {{ post.content|safe }}
     {% endautoescape %}
 </p>
 {% endif %}

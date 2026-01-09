@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os.path
 from pathlib import Path
 
+from django_blog_program.decorator_cache import CACHE
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,6 +38,13 @@ INSTALLED_APPS = [
     'comment',
     'django_blog_program',
 
+    'rest_framework',
+
+    'dal',
+    'dal_select2',
+    'ckeditor',
+    'ckeditor_uploader',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,6 +67,23 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog_program.urls'
 
+
+CKEDITOR_CONFIG = {
+    'default': {
+        'toolbar': 'Full',
+        'width': '800',
+        'height': '300',
+        'tabSpaces': 4,
+        'extraPlugins': 'code snippet',
+        'toolbar_HTML_Basic': [
+            ['Format', 'Bold', 'Italic', 'Underline'],
+            ['Link', 'Unlink'],
+            ['Image', 'Table', 'HorizontalRule'],
+            ['Source'],
+        ],
+    },
+
+}
 
 THEMES = 'bootstrap' # default
 TEMPLATES = [
@@ -137,3 +163,44 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+CKEDITOR_UPLOAD_PATH = 'ckeditor'
+DEFAULT_FILE_STORAGE = 'django_blog_program.storage.WaterMakeStorage'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 2,
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+
+        #'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        #'LOCATION': os.path.join(BASE_DIR, 'cache'),
+
+        #'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        #'LOCATION': 'my_cache_table',
+
+        #'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        #'LOCATION': [
+        #    '127.0.0.1:11211',
+        #]
+
+        # redis cache
+        #'BACKEND': 'django_redis.cache.RedisCache',
+        #'LOCATION': 'redis://127.0.0.1:6379/1',
+        #'TIMEOUT': 300,
+        #'OPTIONS': {
+            # 'PASSWORD': '123456',
+        #   'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        #  'PARSER_CLASS': 'redis.connection.HiredisParser',
+        #},
+        #'CONNECTION_POOL_CLASS': 'redis.connection.BlockingConnectionPool',
+    }
+}

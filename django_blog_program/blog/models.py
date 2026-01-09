@@ -67,6 +67,7 @@ class Post(models.Model):
     )
     title = models.CharField(max_length=255, verbose_name='标题')
     desc = models.CharField(max_length=1024, blank=True, verbose_name='摘要')
+    is_md = models.BooleanField(default=False, verbose_name='Markdown格式')
     content = models.TextField(verbose_name='正文', help_text='正文必须为Markdown格式')
     content_html = models.TextField(verbose_name='正文html代码', blank=True, editable=False)
     status = models.PositiveIntegerField(default=STATUS_NORMAL, choices=STATUS_ITEMS, verbose_name='状态')
@@ -85,7 +86,10 @@ class Post(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.content_html = mistune.markdown(self.content)
+        if self.is_md:
+            self.content_html = mistune.markdown(self.content)
+        else:
+            self.content_html = self.content
         super(Post, self).save(*args, **kwargs)
 
     @cached_property
@@ -115,8 +119,10 @@ class Post(models.Model):
         return post_list, category
 
     @classmethod
-    def latest_posts(cls):
+    def latest_posts(cls, with_related=True):
         queryset = cls.objects.filter(status=cls.STATUS_NORMAL)
+        if with_related:
+            queryset = queryset.select_related('owner', 'category').prefetch_related('tag')
         return queryset
 
     @classmethod

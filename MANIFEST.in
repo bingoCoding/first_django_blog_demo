@@ -1,0 +1,5 @@
+
+include README.md
+
+# 递归查找所有css、js、jpg、html、md文件
+recursive-include django_blog_program *.css *.js *.jpg *.html *.md

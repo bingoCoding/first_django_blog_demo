@@ -6,7 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    profile = os.environ.get('DJANGO_PROFILE', 'dev')
+    profile = os.environ.get('DJANGO_PROFILE', 'prod')
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_blog_program.settings.%s' % profile)
     try:
         from django.core.management import execute_from_command_line
